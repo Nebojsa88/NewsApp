@@ -13,7 +13,7 @@ public class AppSettings {
     public static final String THEME_KEY = "theme";
     public static final int THEME_LIGHT = 0;
     public static final int THEME_DARK = 1;
-    public static final int THEME_DARK_AMOLED = 2;
+
 
     public AppSettings(Context context){
         pref = context.getSharedPreferences("prefApp", Context.MODE_PRIVATE);
@@ -28,6 +28,6 @@ public class AppSettings {
         this.theme = theme;
         SharedPreferences.Editor editor = pref.edit();
         editor.putInt(THEME_KEY, theme);
-        editor.commit();
+        editor.apply();
     }
 }

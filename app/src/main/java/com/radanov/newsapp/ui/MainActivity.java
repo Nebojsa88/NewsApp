@@ -1,6 +1,7 @@
 package com.radanov.newsapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
@@ -14,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
 
     NavHostFragment navHostFragment;
     BottomNavigationView bottomNavigationView;
-
     AppSettings settings;
 
     @Override
@@ -23,28 +23,21 @@ public class MainActivity extends AppCompatActivity {
 
         settings = new AppSettings(this);
 
-
-
-        applyTheme(settings.getTheme());
+        applyThemeTest(settings.getTheme());
 
         setContentView(R.layout.activity_main);
         setupNavigation();
-
-
     }
 
-    private void applyTheme(int theme) {
+    private void applyThemeTest(int theme) {
 
-        switch (theme){
-            case AppSettings.THEME_LIGHT: setTheme(R.style.Theme_NewsApp);
-                break;
-            case AppSettings.THEME_DARK: setTheme(R.style.DarkTheme);
-                break;
-            case AppSettings.THEME_DARK_AMOLED:setTheme(R.style.DarkTheme);
-                break;
-            default: setTheme(R.style.DarkTheme);
+        if (theme == 0){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }else if(theme == 1){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-
     }
 
     private void setupNavigation() {
